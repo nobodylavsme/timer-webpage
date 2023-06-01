@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer</title>
+    <style>
+        #timer {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">Timer: 77,76000 seconds</div>
+
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt((timer % 3600) % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = "Timer: " + hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval();
+                    display.textContent = "Timer completed!";
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var display = document.getElementById("timer");
+            startTimer(7776000, display);
+        };
+    </script>
+</body>
+</html>
